@@ -16,6 +16,8 @@ def map():
 def calculation_of_player_coordinates1():
     global player
     global game_line1
+    global game_line2
+    global game_line3
     global cordinates_player
     global base_coordinates_player
     global player_coordinates
