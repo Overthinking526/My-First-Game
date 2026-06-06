@@ -50,10 +50,10 @@ def main():
             exitGame = 0
             exit = input("Do you want to exit the game? (y/n): ")
             if exit == "y":
-                print("Выход из игры...")
+                print("Exiting the game...")
                 break
             elif exit == "n":
-                print("едем дальше хули")
+                print("Moving right along, then...")
             else:
                 print("Error")
                 break
