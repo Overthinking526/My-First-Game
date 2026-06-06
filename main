@@ -1,0 +1,67 @@
+player = True
+hp_player = 20
+geld_player = 15
+Inventory_player = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
+
+player = "P"
+player_coordinates = 0
+defolt_map_cod = "0"
+
+game_location1 = ["0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0",]
+
+def map():
+    print(game_location1)
+
+def calculation_of_player_coordinates1():
+    global player
+    global game_location1
+    global cordinates_player
+    global base_coordinates_player
+    global player_coordinates
+    global defolt_map_cod
+
+    move_player = input("Enter your move: ")
+
+    if move_player == "d":
+        player_coordinates += 1
+        game_location1[player_coordinates] = player
+        player_coordinates -= 1
+        game_location1[player_coordinates] = defolt_map_cod
+        player_coordinates += 1
+    else:
+        move_player = "a"
+        player_coordinates -= 1
+        game_location1[player_coordinates] = player
+        player_coordinates += 1
+        game_location1[player_coordinates] = defolt_map_cod
+        player_coordinates -= 1
+
+def main():
+    exitGame = 0
+
+    while True:
+        calculation_of_player_coordinates1()
+        map()
+
+        exitGame += 1
+        print("Ход:" + str(exitGame))
+
+        if exitGame >= 10:
+            exitGame = 0
+            exit = input("Do you want to exit the game? (y/n): ")
+            if exit == "y":
+                print("Выход из игры...")
+                break
+            elif exit == "n":
+                print("едем дальше хули")
+            else:
+                print("Error")
+                break
+
+
+
+if __name__ == '__main__':
+    main()
+
+
+
