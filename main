@@ -1,64 +1,232 @@
+import random
+
+player_hp = 20
+emeny_hp = 12
+player_hit = 5
+emeny_hit = 3
+
+player_gold = 0
 player = "P"
-player_coordinates = 0
-defolt_map_cod = "-"
-exitGame = 0
+player_x = 1
+player_y = 1
+dead_player = "X"
 
-game_line1 = ["-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-"]
-game_line2 = ["-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-"]
-game_line3 = ["-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-"]
+defplayer_cord = [1], [1]
+base_for_line = "-"
 
-def map():
-    print(game_line1)
+Tree = "T"
+Stone = "S"
+Gold = "G"
+Enemy = "E"
 
-def calculation_of_player_coordinates1():
+game_map = [
+    ["-","-","-","-","-","T","-","-","-","-","-","-","G"],
+    ["-","-","-","-","-","-","-","-","-","-","-","T","E"],
+    ["-","-","-","E","-","-","-","T","-","-","S","-","-"],
+    ["-","-","T","-","-","-","S","-","-","-","-","-","-"],
+    ["-","-","-","-","-","-","-","-","-","-","-","E","-"],
+    ["-","S","G","-","-","-","-","-","-","T","-","-","-"],
+    ["-","-","-","E","-","T","G","-","-","-","-","-","-"],
+    ["-","T","-","-","-","-","-","-","-","-","G","-","-"],
+    ["E","-","-","-","-","-","S","T","-","-","-","T","-"],
+    ["-","-","-","-","-","-","-","-","-","-","E","-","-"],
+    ["-","-","-","-","-","T","-","-","-","T","-","-","-"],
+    ["-","-","T","-","-","-","-","-","-","-","-","-","-"],
+    ["-","-","-","S","-","-","E","-","-","-","S","-","-"],
+    ["T","E","-","-","-","-","-","T","-","-","-","-","T"],
+    ["G","-","-","-","-","-","-","-","-","-","-","G","-"],
+]
+
+
+def map_player():
+    global player_x
+    global player_y
+    global game_map
     global player
-    global game_line1
-    global game_line2
-    global game_line3
-    global cordinates_player
-    global base_coordinates_player
-    global player_coordinates
-    global defolt_map_cod
 
-    move_player = input("Enter your move: ")
+    for line in game_map:
+        print(line)
 
-    if move_player == "d":
-        player_coordinates += 1
-        game_line1[player_coordinates] = player
-        player_coordinates -= 1
-        game_line1[player_coordinates] = defolt_map_cod
-        player_coordinates += 1
-    else:
-        move_player = "a"
-        player_coordinates -= 1
-        game_line1[player_coordinates] = player
-        player_coordinates += 1
-        game_line1[player_coordinates] = defolt_map_cod
-        player_coordinates -= 1
+def move_down():
+    global player
+    global player_x, player_y
+    global base_for_line
+    global game_map
+    global player_gold
+    global player_hp
+    global emeny_hit
+
+    new_x = player_x + 1
+    new_y = player_y
+
+    if game_map[new_x][new_y] == base_for_line:
+        game_map[player_x][player_y] = base_for_line
+
+        player_x = new_x
+        player_y = new_y
+
+    elif game_map[new_x][new_y] == Tree:
+        print("Тут дерево еблан выбери заного")
+    elif game_map[new_x][new_y] == Stone:
+        print("Тут камень еблан выбери заного")
+    elif game_map[new_x][new_y] == Gold:
+        game_map[new_x][new_y] = base_for_line
+        print("О дережки сюдаааааа")
+        player_gold +=1
+        game_map[player_x][player_y] = player
+    elif game_map[new_x][new_y] == Enemy:
+        player_hp -= emeny_hit
+        print("тебе дали пизды! ")
+    game_map[player_x][player_y] = player
+
+def move_up():
+    global player
+    global player_x, player_y
+    global base_for_line
+    global game_map
+    global player_gold
+    global player_hp
+    global emeny_hit
+
+    new_x = player_x - 1
+    new_y = player_y
+
+    if game_map[new_x][new_y] == base_for_line:
+        game_map[player_x][player_y] = base_for_line
+
+        player_x = new_x
+        player_y = new_y
+
+    elif game_map[new_x][new_y] == Tree:
+        print("Тут дерево еблан выбери заного")
+    elif game_map[new_x][new_y] == Stone:
+        print("Тут камень еблан выбери заного")
+    elif game_map[new_x][new_y] == Gold:
+        game_map[new_x][new_y] = base_for_line
+        print("О дережки сюдаааааа")
+        player_gold +=1
+        game_map[player_x][player_y] = player
+    elif game_map[new_x][new_y] == Enemy:
+        player_hp -= emeny_hit
+        print("тебе дали пизды! ")
+    game_map[player_x][player_y] = player
+
+def move_left():
+    global player
+    global player_x, player_y
+    global base_for_line
+    global game_map
+    global player_gold
+    global player_hp
+    global emeny_hit
+
+    new_x = player_x
+    new_y = player_y - 1
+
+    if game_map[new_x][new_y] == base_for_line:
+        game_map[player_x][player_y] = base_for_line
+
+        player_x = new_x
+        player_y = new_y
+
+    elif game_map[new_x][new_y] == Tree:
+        print("Тут дерево еблан выбери заного")
+    elif game_map[new_x][new_y] == Stone:
+        print("Тут камень еблан выбери заного")
+    elif game_map[new_x][new_y] == Gold:
+        game_map[new_x][new_y] = base_for_line
+        print("О дережки сюдаааааа")
+        player_gold +=1
+        game_map[player_x][player_y] = player
+    elif game_map[new_x][new_y] == Enemy:
+        player_hp -= emeny_hit
+        print("тебе дали пизды! ")
+    game_map[player_x][player_y] = player
+
+def move_right():
+    global player
+    global player_x, player_y
+    global base_for_line
+    global game_map
+    global player_gold
+    global player_hp
+    global emeny_hit
+
+    new_x = player_x
+    new_y = player_y + 1
+
+    if game_map[new_x][new_y] == base_for_line:
+        game_map[player_x][player_y] = base_for_line
+
+        player_x = new_x
+        player_y = new_y
+
+    elif game_map[new_x][new_y] == Tree:
+        print("Тут дерево еблан выбери заного")
+    elif game_map[new_x][new_y] == Stone:
+        print("Тут камень еблан выбери заного")
+    elif game_map[new_x][new_y] == Gold:
+        game_map[new_x][new_y] = base_for_line
+        print("О дережки сюдаааааа")
+        player_gold +=1
+        game_map[player_x][player_y] = player
+    elif game_map[new_x][new_y] == Enemy:
+        player_hp -= emeny_hit
+        print("тебе дали пизды! ")
+    game_map[player_x][player_y] = player
+
+def lost():
+    global game_exit
+    global player_hp
+    global emeny_hit
+    global player_x, player_y
+    global dead_player
+
+    if (player_hp <= 0):
+        print("Проиграл лох педальный :)))))) Рестарт игры: ")
+        player_hp = 20
+        game_map[player_x][player_y] = dead_player
+        player_x = 1
+        player_y = 1
+    elif (player_gold == 6):
+        print("Ты победил: ")
+        game_exit = 25
 
 def main():
-    global exitGame
+    global player_x, player_y
+    global player_gold
+    global player_hp
+    global emeny_hit
 
-    while True:
-        calculation_of_player_coordinates1()
-        map()
+    game_exit = 0
 
-        exitGame += 1
-        print("Ход:" + str(exitGame))
+    while(True):
 
-        if exitGame >= 10:
-            exitGame = 0
-            exit = input("Do you want to exit the game? (y/n): ")
-            if exit == "y":
-                print("Exiting the game...")
+        game_exit += 1
+        if (game_exit == 25):
+            time_data = input("Хош выйти из игры? y|n: ")
+            if (time_data == "y"):
                 break
-            elif exit == "n":
-                print("Moving right along, then...")
+            elif (time_data == "n"):
+                print("лан похуй едем дальше")
             else:
-                print("Error")
                 break
 
+        def move_player():
+            player_move_time_data = input("Твой мув сучка: ")
+            if (player_move_time_data == "d"):
+                move_right()
+            elif (player_move_time_data == "a"):
+                move_left()
+            elif (player_move_time_data == "s"):
+                move_down()
+            elif (player_move_time_data == "w"):
+                move_up()
 
+        lost()
+        map_player()
+        move_player()
+        print("Деньги: " + str(player_gold), "Хп: " + str(player_hp))
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
