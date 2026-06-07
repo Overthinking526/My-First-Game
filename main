@@ -47,7 +47,13 @@ def map_player():
     for line in game_map:
         print(line)
 
-def move_down():
+#вниз new_x = player_x + 1
+#верх new_x = player_x - 1
+#вправо new_y = player_y + 1
+#влево new_y = player_y - 1
+
+
+def move_player():
     global player
     global player_x, player_y
     global base_for_line
@@ -55,74 +61,20 @@ def move_down():
     global player_gold
     global player_hp
     global emeny_hit
-
-    new_x = player_x + 1
-    new_y = player_y
-
-    if game_map[new_x][new_y] == base_for_line:
-        game_map[player_x][player_y] = base_for_line
-
-        player_x = new_x
-        player_y = new_y
-
-    elif game_map[new_x][new_y] == Tree:
-        print("Тут дерево еблан выбери заного")
-    elif game_map[new_x][new_y] == Stone:
-        print("Тут камень еблан выбери заного")
-    elif game_map[new_x][new_y] == Gold:
-        game_map[new_x][new_y] = base_for_line
-        print("О дережки сюдаааааа")
-        player_gold +=1
-        game_map[player_x][player_y] = player
-    elif game_map[new_x][new_y] == Enemy:
-        player_hp -= emeny_hit
-        print("тебе дали пизды! ")
-    game_map[player_x][player_y] = player
-
-def move_up():
-    global player
-    global player_x, player_y
-    global base_for_line
-    global game_map
-    global player_gold
-    global player_hp
-    global emeny_hit
-
-    new_x = player_x - 1
-    new_y = player_y
-
-    if game_map[new_x][new_y] == base_for_line:
-        game_map[player_x][player_y] = base_for_line
-
-        player_x = new_x
-        player_y = new_y
-
-    elif game_map[new_x][new_y] == Tree:
-        print("Тут дерево еблан выбери заного")
-    elif game_map[new_x][new_y] == Stone:
-        print("Тут камень еблан выбери заного")
-    elif game_map[new_x][new_y] == Gold:
-        game_map[new_x][new_y] = base_for_line
-        print("О дережки сюдаааааа")
-        player_gold +=1
-        game_map[player_x][player_y] = player
-    elif game_map[new_x][new_y] == Enemy:
-        player_hp -= emeny_hit
-        print("тебе дали пизды! ")
-    game_map[player_x][player_y] = player
-
-def move_left():
-    global player
-    global player_x, player_y
-    global base_for_line
-    global game_map
-    global player_gold
-    global player_hp
-    global emeny_hit
+    global player_move_time_data
+    player_move_time_data = input("Твой мув сучка: ")
 
     new_x = player_x
-    new_y = player_y - 1
+    new_y = player_y
 
+    if player_move_time_data == "w":
+        new_x -= 1
+    elif player_move_time_data == "s":
+        new_x += 1
+    elif player_move_time_data == "d":
+        new_y += 1
+    elif player_move_time_data == "a":
+        new_y -= 1
     if game_map[new_x][new_y] == base_for_line:
         game_map[player_x][player_y] = base_for_line
 
@@ -136,40 +88,10 @@ def move_left():
     elif game_map[new_x][new_y] == Gold:
         game_map[new_x][new_y] = base_for_line
         print("О дережки сюдаааааа")
-        player_gold +=1
-        game_map[player_x][player_y] = player
-    elif game_map[new_x][new_y] == Enemy:
-        player_hp -= emeny_hit
-        print("тебе дали пизды! ")
-    game_map[player_x][player_y] = player
-
-def move_right():
-    global player
-    global player_x, player_y
-    global base_for_line
-    global game_map
-    global player_gold
-    global player_hp
-    global emeny_hit
-
-    new_x = player_x
-    new_y = player_y + 1
-
-    if game_map[new_x][new_y] == base_for_line:
         game_map[player_x][player_y] = base_for_line
-
+        player_gold +=1
         player_x = new_x
         player_y = new_y
-
-    elif game_map[new_x][new_y] == Tree:
-        print("Тут дерево еблан выбери заного")
-    elif game_map[new_x][new_y] == Stone:
-        print("Тут камень еблан выбери заного")
-    elif game_map[new_x][new_y] == Gold:
-        game_map[new_x][new_y] = base_for_line
-        print("О дережки сюдаааааа")
-        player_gold +=1
-        game_map[player_x][player_y] = player
     elif game_map[new_x][new_y] == Enemy:
         player_hp -= emeny_hit
         print("тебе дали пизды! ")
@@ -211,17 +133,6 @@ def main():
                 print("лан похуй едем дальше")
             else:
                 break
-
-        def move_player():
-            player_move_time_data = input("Твой мув сучка: ")
-            if (player_move_time_data == "d"):
-                move_right()
-            elif (player_move_time_data == "a"):
-                move_left()
-            elif (player_move_time_data == "s"):
-                move_down()
-            elif (player_move_time_data == "w"):
-                move_up()
 
         lost()
         map_player()
