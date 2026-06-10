@@ -2,6 +2,7 @@ import random
 
 player_hp = 20
 emeny_hp = 12
+emeny_hp_base = 12
 player_hit = 5
 emeny_hit = 3
 
@@ -57,6 +58,7 @@ def move_player():
     global player_move_time_data
     global emeny_hp
     global player_hit
+    global emeny_hp_base
 
     player_move_time_data = input("Твой мув сучка: ")
 
@@ -94,6 +96,7 @@ def move_player():
         print(emeny_hp)
         if emeny_hp <= 0:
             game_map[new_x][new_y] = base_for_line
+            emeny_hp = emeny_hp_base
     game_map[player_x][player_y] = player
 
 def lost():
