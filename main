@@ -37,7 +37,6 @@ game_map = [
     ["G","-","-","-","-","-","-","-","-","-","-","G","-"],
 ]
 
-
 def map_player():
     global player_x
     global player_y
@@ -46,12 +45,6 @@ def map_player():
 
     for line in game_map:
         print(line)
-
-#вниз new_x = player_x + 1
-#верх new_x = player_x - 1
-#вправо new_y = player_y + 1
-#влево new_y = player_y - 1
-
 
 def move_player():
     global player
@@ -62,6 +55,9 @@ def move_player():
     global player_hp
     global emeny_hit
     global player_move_time_data
+    global emeny_hp
+    global player_hit
+
     player_move_time_data = input("Твой мув сучка: ")
 
     new_x = player_x
@@ -94,7 +90,10 @@ def move_player():
         player_y = new_y
     elif game_map[new_x][new_y] == Enemy:
         player_hp -= emeny_hit
-        print("тебе дали пизды! ")
+        emeny_hp -= player_hit
+        print(emeny_hp)
+        if emeny_hp <= 0:
+            game_map[new_x][new_y] = base_for_line
     game_map[player_x][player_y] = player
 
 def lost():
