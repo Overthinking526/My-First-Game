@@ -45,7 +45,7 @@ def map_player():
     global player
 
     for line in game_map:
-        print(line)
+        print(" ".join(line))
 
 def move_player():
     global player
@@ -85,7 +85,7 @@ def move_player():
         print("Тут камень еблан выбери заного")
     elif game_map[new_x][new_y] == Gold:
         game_map[new_x][new_y] = base_for_line
-        print("О дережки сюдаааааа")
+        print("О денежки сюдаааааа")
         game_map[player_x][player_y] = base_for_line
         player_gold +=1
         player_x = new_x
