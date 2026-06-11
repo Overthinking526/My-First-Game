@@ -15,6 +15,7 @@ emeny_hit = 3
 player_hp = 20
 emeny_hp = 12
 player_gold = 0
+defplayer_cord = [1], [1]
 
 dead_player = "X"
 base_for_line = "-"
