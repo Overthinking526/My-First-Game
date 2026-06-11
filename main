@@ -2,8 +2,6 @@ import random
 import map_player_file
 import move_player_file
 
-player_hp = 20
-
 def main():
     global player_x, player_y
     global player_gold
