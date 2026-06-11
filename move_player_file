@@ -1,0 +1,86 @@
+from map_player_file import game_map
+
+player_x = 1
+player_y = 1
+player = "P"
+
+Tree = "T"
+Stone = "S"
+Gold = "G"
+Enemy = "E"
+
+emeny_hp_base = 12
+player_hit = 5
+emeny_hit = 3
+player_hp = 20
+emeny_hp = 12
+player_gold = 0
+
+dead_player = "X"
+base_for_line = "-"
+
+def move_player():
+    global player
+    global player_x
+    global player_y
+    global base_for_line
+    global player_gold
+    global player_hp
+    global emeny_hit
+    global player_move_time_data
+    global emeny_hp
+    global player_hit
+    global emeny_hp_base
+    global Tree
+    global Stone
+    global Gold
+    global Enemy
+
+    player_move_time_data = input("Твой мув сучка: ")
+
+    new_x = player_x
+    new_y = player_y
+
+    if (player_hp <= 0):
+        print("Проиграл лох педальный :)))))) Рестарт игры: ")
+        player_hp = 20
+        game_map[player_x][player_y] = dead_player
+        player_x = 1
+        player_y = 1
+    elif (player_gold == 6):
+        print("Ты победил: ")
+
+    if player_move_time_data == "w":
+        new_x -= 1
+    elif player_move_time_data == "s":
+        new_x += 1
+    elif player_move_time_data == "d":
+        new_y += 1
+    elif player_move_time_data == "a":
+        new_y -= 1
+    if game_map[new_x][new_y] == base_for_line:
+        game_map[player_x][player_y] = base_for_line
+
+        player_x = new_x
+        player_y = new_y
+
+    elif game_map[new_x][new_y] == Tree:
+        print("Тут дерево еблан выбери заного")
+    elif game_map[new_x][new_y] == Stone:
+        print("Тут камень еблан выбери заного")
+    elif game_map[new_x][new_y] == Gold:
+        game_map[new_x][new_y] = base_for_line
+        print("О денежки сюдаааааа")
+        game_map[player_x][player_y] = base_for_line
+        player_gold +=1
+        player_x = new_x
+        player_y = new_y
+    elif game_map[new_x][new_y] == Enemy:
+        player_hp -= emeny_hit
+        emeny_hp -= player_hit
+        print(emeny_hp)
+        if emeny_hp <= 0:
+            game_map[new_x][new_y] = base_for_line
+            emeny_hp = emeny_hp_base
+    game_map[player_x][player_y] = player
+    print("Деньги: " + str(player_gold), "Хп: " + str(player_hp))
