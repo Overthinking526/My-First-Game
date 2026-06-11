@@ -3,6 +3,7 @@ from map_player_file import game_map
 player_x = 1
 player_y = 1
 player = "P"
+player_hp = 20
 
 Tree = "T"
 Stone = "S"
