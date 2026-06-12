@@ -3,12 +3,6 @@ import map_player_file
 import move_player_file
 
 def main():
-    global player_x, player_y
-    global player_gold
-    global player_hp
-    global emeny_hit
-    global game_exit
-
     while(True):
         map_player_file.map_player()
         move_player_file.move_player()
