@@ -73,12 +73,12 @@ def move_player():
             player_y = new_y
 
         elif game_map[new_x][new_y] == Tree:
-            print("Тут дерево еблан выбери заного")
+            print("Тут дерево еблан выбери другой путь")
         elif game_map[new_x][new_y] == Stone:
-            print("Тут камень еблан выбери заного")
+            print("Тут камень еблан выбери другой путь")
         elif game_map[new_x][new_y] == Gold:
             game_map[new_x][new_y] = base_for_line
-            print("О денежки сюдаааааа")
+            print("О денежки сюдааааааАААААААААААААААА")
             game_map[player_x][player_y] = base_for_line
             player_gold += 1
             player_x = new_x
