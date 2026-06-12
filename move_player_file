@@ -3,7 +3,10 @@ from map_player_file import game_map
 player_x = 1
 player_y = 1
 player = "P"
+dead_player = "X"
 player_hp = 20
+player_hit = 5
+player_gold = 0
 
 Tree = "T"
 Stone = "S"
@@ -11,14 +14,11 @@ Gold = "G"
 Enemy = "E"
 
 emeny_hp_base = 12
-player_hit = 5
 emeny_hit = 3
-player_hp = 20
 emeny_hp = 12
-player_gold = 0
+
 defplayer_cord = [1], [1]
 
-dead_player = "X"
 base_for_line = "-"
 
 def move_player():
